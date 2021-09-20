@@ -1,5 +1,6 @@
 import os
 import shutil
+import webbrowser
 
 from fileOrganiser import fileOrganiserOV
 from mkNewFiles import *
@@ -20,15 +21,15 @@ while running:
         if source_folder == "ov":
             fileOrganiserOV()
     elif userCommand.lower() == "newfile":
-        userCommand = input("\033[1;37;40m > \033[1;49;95m Where would you like to create the file? \033[1;49;92m")
-        if userCommand == "ov":
-            userCommand = input("\033[1;37;40m > \033[1;49;95m Which class would like it for?  \033[1;49;96m")
-            if userCommand.lower() == "eng":
-                engNewFile()
-            elif userCommand.lower() == "sci" or userCommand.lower() == "science":
-                sciNewFile()
-            elif userCommand.lower() == "his" or userCommand.lower() == "history":
-                hisNewFile()
+        userCommand = input("\033[1;37;40m > \033[1;49;95m Which class would like it for?  \033[1;49;96m")
+        if userCommand.lower() == "eng":
+            engNewFile()
+        elif userCommand.lower() == "sci" or userCommand.lower() == "science":
+            sciNewFile()
+        elif userCommand.lower() == "his" or userCommand.lower() == "history":
+            hisNewFile()
+        elif userCommand.lower() == "comp" or userCommand.lower() == "computer":
+            compNewFile()
     elif userCommand.lower() == "openfile":
         userCommand = input("\033[1;37;40m > \033[1;49;92m")
         if userCommand == "ov":
@@ -42,8 +43,16 @@ while running:
 \033[1;37;40m > \033[1;49;92m newfile --> Make a new file
 \033[1;37;40m > \033[1;49;92m openfile --> Open a file
         """)
+    elif userCommand == "cache":
+        try:
+            os.remove(r"\__pycache__\\")
+            print("> Cleared")
+        except FileNotFoundError:
+            print(colored("> File Not Found", 'red'))
     elif userCommand == "clear":
         clear()
     elif userCommand == "quit":
         running = False
         break
+    if userCommand == "search":
+        webbrowser.open("https://cn.bing.com/")
