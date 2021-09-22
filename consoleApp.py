@@ -4,24 +4,33 @@ import webbrowser
 
 from fileOrganiser import fileOrganiserOV
 from mkNewFiles import *
-from openFile import definePath
+from openFile import openedFile
 from termcolor import colored
 from deleteFile import deleteFile
+from colors import colors
 
-def clear():
-    os.system('cls' if os.name=='nt' else 'clear')
+
+def clearTerminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
     return("   ")
-clear()
+
+
+# Clearing the terminal everytime someone enters the program
+clearTerminal()
 print("")
 running = True
+
+# The core loop of the program that will check for inputs
 while running:
-    userCommand = input(f"\033[1;37;40m> \033[1;49;96m")
+    userCommand = input(f"{colors['white']}> {colors['cyan']}")
     if userCommand.lower() == "movefile":
-        source_folder = input("\033[1;37;40m > \033[1;49;95m What is the source folder? \033[1;49;92m")
+        source_folder = input(
+            f"{colors['white']} >  What is the source folder? {colors['green']}")
         if source_folder == "ov":
             fileOrganiserOV()
     elif userCommand.lower() == "newfile":
-        userCommand = input("\033[1;37;40m > \033[1;49;95m Which class would like it for?  \033[1;49;96m")
+        userCommand = input(
+            f"{colors['white']} > {colors['purple']} Which class would like it for?  {colors['cyan']}")
         if userCommand.lower() == "eng":
             engNewFile()
         elif userCommand.lower() == "sci" or userCommand.lower() == "science":
@@ -31,28 +40,28 @@ while running:
         elif userCommand.lower() == "comp" or userCommand.lower() == "computer":
             compNewFile()
     elif userCommand.lower() == "openfile":
-        userCommand = input("\033[1;37;40m > \033[1;49;92m")
+        userCommand = input(f"{colors['white']} > {colors['green']}")
         if userCommand == "ov":
-            definePath()
+            openedFile()
     elif userCommand == "dlfile" or userCommand == "delete":
         deleteFile()
     elif userCommand == "help":
-        print("""
-\033[1;37;40m > \033[1;49;92m dlfile --> Delete a file
-\033[1;37;40m > \033[1;49;92m movefile --> Organise your files 
-\033[1;37;40m > \033[1;49;92m newfile --> Make a new file
-\033[1;37;40m > \033[1;49;92m openfile --> Open a file
+        print(f"""
+{colors['white']} >  dlfile --> Delete a file
+{colors['white']} >  movefile --> Organise your files 
+{colors['white']} >  newfile --> Make a new file
+{colors['white']} >  openfile --> Open a file
         """)
     elif userCommand == "cache":
         try:
             os.remove(r"\__pycache__\\")
-            print("> Cleared")
+            print(f"> Cleared")
         except FileNotFoundError:
-            print(colored("> File Not Found", 'red'))
+            print(colored(f"> File Not Found", 'red'))
     elif userCommand == "clear":
         clear()
     elif userCommand == "quit":
         running = False
         break
-    if userCommand == "search":
+    elif userCommand == "search":
         webbrowser.open("https://cn.bing.com/")
