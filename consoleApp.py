@@ -30,3 +30,9 @@ while isRunning:
         absPath = input("Please provide the path of the directory? ")
         if absPath == "ov":
             absPath = schoolFolder
+    
+    elif userCommand.lower() == "open":
+        absPath = input("Please provide the path or directory? ")
+        if abspath.lower() == "ov":
+            absPath = schoolFolder
+        openFile(absPath)
