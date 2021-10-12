@@ -4,6 +4,7 @@ from src.globalVariables import *
 
 def fileOrganiser(path):
     for file in os.listdir(path):
+        # Were going to be seperating the file name and the extension in 2 variables for later use
         fileName, fileExt = os.path.splitext(file)
         if fileExt == ".exe":
             shutil.move(path + f"/{file}" , exeFolder)

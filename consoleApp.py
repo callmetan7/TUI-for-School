@@ -5,6 +5,7 @@ from src.deleteFile import deleteFile
 from src.globalVariables import *
 from startup import startup
 from src.fileOrganiser import fileOrganiser
+from src.openFile import openFile
 
 # Clearing the terminal on the start so there is no clutter in the app
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -24,10 +25,8 @@ while isRunning:
         if path.lower() == "downloads" or path == "download" or path == "ov":
             path = downloadsFolder
         fileOrganiser(path)
+
     elif userCommand.lower() == "dlfile":
         absPath = input("Please provide the path of the directory? ")
         if absPath == "ov":
-            absPath = downloadsFolder
-        deleteFile(absPath)
-
-        # TODO: open, and make a new file features
+            absPath = schoolFolder
