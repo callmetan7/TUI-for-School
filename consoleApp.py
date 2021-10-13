@@ -14,25 +14,26 @@ startup()
 # Running the mainloop to check for the users inputs and performs actions based on that
 isRunning = True
 while isRunning:
-    userCommand = input("> ")
+    userCommand = input(f"{white}>{cyan} ")
     
     if userCommand.lower() == "quit":
         os.system('cls' if os.name == 'nt' else 'clear')
         quit()
 
     elif userCommand.lower() == "ogfile":
-        path = input("Please provide the path of the folder (you can use shortcuts like ov for downloads folder?> ")
+        path = input(f"{purple} Please provide the path of the folder (you can use shortcuts like ov for downloads folder?{white} >{green} ")
         if path.lower() == "downloads" or path == "download" or path == "ov":
             path = downloadsFolder
         fileOrganiser(path)
 
     elif userCommand.lower() == "dlfile":
-        absPath = input("Please provide the path of the directory? ")
+        absPath = input(f" {purple}Please provide the path of the directory?{white} >{green}")
         if absPath == "ov":
             absPath = schoolFolder
-    
+        deleteFile(absPath)
+        
     elif userCommand.lower() == "open":
-        absPath = input("Please provide the path or directory? ")
-        if abspath.lower() == "ov":
+        absPath = input(f"{purple}Please provide the path or directory? {white}>{green}")
+        if absPath.lower() == "ov":
             absPath = schoolFolder
         openFile(absPath)
