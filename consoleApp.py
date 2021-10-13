@@ -6,6 +6,7 @@ from src.globalVariables import *
 from startup import startup
 from src.fileOrganiser import fileOrganiser
 from src.openFile import openFile
+from src.makeNewFile import makeNewFile
 
 # Clearing the terminal on the start so there is no clutter in the app
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -37,3 +38,12 @@ while isRunning:
         if absPath.lower() == "ov":
             absPath = schoolFolder
         openFile(absPath)
+    elif userCommand.lower() == "new":
+        absPath = input(f"{purple}Please provide the path or directory? {white}>{green}")
+        if absPath == "ov":
+            absPath = schoolFolder
+        makeNewFile(absPath)
+
+
+if __name__ == '__main__':
+    main()
